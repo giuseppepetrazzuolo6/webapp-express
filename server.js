@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 const moviesRouter = require('./routes/moviesRouter')
+const serverError = require('./middleware/serverError')
 
 // body parser
 app.use(express.json())
@@ -17,3 +18,5 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/movies', moviesRouter)
+
+app.use(serverError)
