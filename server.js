@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const PORT = 3000
-const connection = require('./database/connection')
 const moviesRouter = require('./routes/moviesRouter')
 
 // body parser

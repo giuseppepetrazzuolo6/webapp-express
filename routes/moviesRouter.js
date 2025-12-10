@@ -1,12 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const moviesController = require('../controllers/moviesController')
 
-// /api/books
-router.get('/', (req, res) => {
-    res.send('show all movies here')
-})
+// index
+router.get('/', moviesController.index)
 
-// /api/books/1
+// show
 router.get('/:id', (req, res) => {
     res.send('show me the movie with id ' + req.params.id)
 })
