@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 const connection = require('./database/connection')
+const moviesRouter = require('./routes/moviesRouter')
 
 // body parser
 app.use(express.json())
@@ -15,3 +16,5 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
     res.send('My movies reviews API server')
 })
+
+app.use('/api/movies', moviesRouter)
