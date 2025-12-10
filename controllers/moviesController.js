@@ -14,11 +14,18 @@ const show = (req, res) => {
     const id = Number(req.params.id)
 
     const sql = 'SELECT * FROM movies WHERE id = ?'
+    const sqlReviews = 'SELECT id, name, vote, text, created_at FROM reviews WHERE movie_id = ?'
     connection.query(sql, [id], (err, response) => {
         if (err) return res.status(500).json({ error: true, message: err.message })
         if (response.length == 0) return res.status(404).json({ error: true, message: err.message })
 
-        res.json(response[0])
+        const movie = response[0]
+
+        connection.query(sqlReviews, [id], (errReviews, resultsReviews) => {
+            if (errReviews) return res.status(500).json({ error: true, message: errReviews.message })
+            movie.reviews = resultsReviews
+            res.json(movie)
+        })
     })
 }
 
