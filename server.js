@@ -1,10 +1,15 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const PORT = 3000
 const moviesRouter = require('./routes/moviesRouter')
 const serverError = require('./middleware/serverError')
 const notFound = require('./middleware/notFound')
 
+
+app.use(cors({
+    origin: 'http://localhost:5173'
+}))
 // body parser
 app.use(express.json())
 // static assets
