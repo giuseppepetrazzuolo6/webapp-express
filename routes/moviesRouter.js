@@ -8,5 +8,8 @@ router.get('/', moviesController.index)
 // show
 router.get('/:id', moviesController.show)
 
+// store POST /api/movies/id/review
+router.post('/:id/review', moviesController.storeReview)
+
 
 module.exports = router
